@@ -1,4 +1,4 @@
-# TEST Oprogramowanie Klawiatury Mechanicznej Quantum (QMK) :id=quantum-mechanical-keyboard-firmware
+# Oprogramowanie Klawiatury Mechanicznej Quantum (QMK) :id=quantum-mechanical-keyboard-firmware
 
 <!---
     Original translator: Tadeusz Miszczyk <42252259+8tm@users.noreply.github.com>
