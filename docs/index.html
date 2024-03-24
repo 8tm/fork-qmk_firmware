@@ -50,9 +50,10 @@
       basePath: '/',
       name: 'QMK Firmware',
       nameLink: {
-        '/ja/': '/#/ja/',
+        '/ja/'   : '/#/ja/',
+        '/pl/'   : '/#/pl/',
         '/zh-cn/': '/#/zh-cn/',
-        '/': '/#/'
+        '/'      : '/#/'
       },
       repo: 'qmk/qmk_firmware',
       loadSidebar: '_summary.md',
@@ -62,20 +63,23 @@
       autoHeader: true,
       fallbackLanguages: [
         'ja',
+        'pl',
         'zh-cn'
       ],
       formatUpdated: '{YYYY}/{MM}/{DD} {HH}:{mm}',
       search: {
         paths: 'auto',
         placeholder: {
+          '/ja/'   : '検索',
+          '/pl/'   : 'Szukaj',
           '/zh-cn/': '搜索',
-          '/ja/': '検索',
-          '/': 'Search'
+          '/'      : 'Search'
         },
         noData: {
+          '/ja/'   : '見つかりません!',
+          '/pl/'   : 'Brak wyników!',
           '/zh-cn/': '没有结果!',
-          '/ja/': '見つかりません!',
-          '/': 'No results!'
+          '/'      : 'No results!'
         },
         depth: 6
       },
@@ -85,14 +89,17 @@
       },
       copyCode: {
         buttonText: {
+          '/pl/'   : 'Skopiuj do schowka',
           '/zh-cn/': '点击复制',
           '/'      : 'Copy to clipboard'
         },
         errorText: {
+          '/pl/'   : 'Błąd',
           '/zh-cn/': '错误',
           '/'      : 'Error'
         },
         successText: {
+          '/pl/'   : 'Skopiowano',
           '/zh-cn/': '复制',
           '/'      : 'Copied'
         }
@@ -116,10 +123,22 @@
             } else {
               url = 'https://github.com/qmk/qmk_firmware/edit/master/docs/' + vm.route.file
             }
-            var editHtml = ':pencil2: [Edit this page](' + url + ')\n'
-            return html
-              + '\n\n----\n\n'
-              + editHtml
+
+            var tableOfContentsText = {
+              '/pl/': 'Spis treści',
+              '/'   : 'Table of Contents',
+            };
+
+            var editThisPageText = {
+              '/pl/': 'Edytuj tę stronę',
+              '/'   : 'Edit this page'
+            };
+
+            var selectedLanguage = Object.keys(editThisPageText).find(lang => vm.route.path.startsWith(lang)) || '/';
+            vm.config.toc.title = tableOfContentsText[selectedLanguage];
+            var editHtml = ':pencil2: [' + editThisPageText[selectedLanguage] + '](' + url + ')\n';
+
+            return html + '\n\n----\n\n' + editHtml;
           })
         },
       ]
